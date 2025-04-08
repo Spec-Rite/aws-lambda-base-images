@@ -14,13 +14,9 @@ You can file issues in this repository to flag issues or send feedback to the La
 
 ## What we're doing here
 
-As soon as new AWS Lambda base images are available, an automated process snapshots the layers and configuration used to create these images and force-pushes them to this repository.
+As soon as new AWS Lambda base images are available, an automated process snapshots the layers and configuration used to create these images and publishes them to this repository. A separate branch is used for each image.
 
-For examples, please see other branches in this repository.
-
-Committed alongside the Dockerfiles in the branches are the tarballs, which balloon the repository size. Thus, we force-push branches that contain the tarballs.
-
-Although we force-push the files away, the older versions of our images remain present on DockerHub and Amazon ECR.
+To avoid ballooning the respository size, we force-push the branches that contain the tarballs. As a result, content may disappear without warning. The older versions of our images remain present on DockerHub and Amazon ECR.
 
 ## Usage
 
