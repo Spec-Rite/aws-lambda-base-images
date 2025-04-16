@@ -7,26 +7,26 @@
 
 This step is only required the first time you set this up, or after dockerfile changes.
 
-`docker build -t aws-lambda-python3.19:local -f Dockerfile.python3.13 .`
+`docker build -t aws-lambda-python3.13:local -f Dockerfile.python3.13 .`
 
-This will create an image called *aws-lambda-python3.19:local*. When building lambda layers we always use this image.
+This will create an image called *aws-lambda-python3.13:local*. When building lambda layers we always use this image.
 
 ### Creating a new lambda layer
 
 1. Create a new directory *lambda_layer_name* with a subdirectory *python*.
 2. Create a *Requirements.txt* file in the new directory.
 3. Run the docker container and enter (bash)
-5. Install the python packages to the **python* directory.
+5. Install the python packages to the *python* directory.
 6. Clean up the install
 7. Package (zip)
 
 ``` bash
 # Create the new directory
 mkdir -p lambda_layer_name/python
-# Create the Requirements.txt
+# Create the Requirements.txt - this example installs pymongo
 echo 'pymongo' > Requirements.txt
 # Run the docker container 
-docker run --name lambdalayer --rm --env HTTP_PROXY --env HTTPS_PROXY --env NO_PROXY --mount type=bind,source="$(pwd)"/lambda_layer_name,target=/var/task/lambdalayer -it aws-lambda-python3.19:local bash
+docker run --name lambdalayer --rm --env HTTP_PROXY --env HTTPS_PROXY --env NO_PROXY --mount type=bind,source="$(pwd)"/lambda_layer_name,target=/var/task/lambdalayer -it aws-lambda-python3.13:local bash
 # Change to the lambdalayer/python directory
 cd lambdalayer/python 
 # Install the python packages to the current directory lambdalayer/python
