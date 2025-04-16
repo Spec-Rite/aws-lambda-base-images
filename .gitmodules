@@ -1,0 +1,3 @@
+[submodule "pylibgeohash/libgeohash"]
+	path = pylibgeohash/libgeohash
+	url = https://github.com/Spec-Rite/libgeohash.git
