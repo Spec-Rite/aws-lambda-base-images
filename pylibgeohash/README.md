@@ -28,7 +28,7 @@ mkdir -p pylibgeohash/python
 # Pull down the submodule
 git submodule update --recursive --remote
 # Run the container
-docker run --name lambdalayer --rm --env HTTP_PROXY --env HTTPS_PROXY --env NO_PROXY --mount type=bind,source="$(pwd)"/pylibgeohash,target=/var/task/lambdalayer -it aws-lambda-python3.19:local bash
+docker run --name lambdalayer --rm --env HTTP_PROXY --env HTTPS_PROXY --env NO_PROXY --mount type=bind,source="$(pwd)"/pylibgeohash,target=/var/task/lambdalayer -it aws-lambda-python3.13:local bash
 # Change to the repository directory
 cd lambdalayer/libgeohash
 # Run Cmake and Build
