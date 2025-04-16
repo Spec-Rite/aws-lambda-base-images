@@ -4,6 +4,8 @@ This forked repository contains the dockerfiles that allow us to run lambda cont
 
 We only use python3.13 for now. So the first thing you will want to do is checkout that branch. The other branches are here just in case we ever need them.
 
+**Make sure you enable git-lfs, see Requirements below**
+
 
 ## AWS Lambda Base Container Images
 
