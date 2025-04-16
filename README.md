@@ -1,3 +1,53 @@
+## SRO Building lambda layers
+
+- Ensure you have git-lfs when checking out
+- Instructions will assume you are running in a linux shell
+
+### Build the container
+
+This step is only required the first time you set this up, or after dockerfile changes.
+
+`docker build -t aws-lambda-python3.19:local -f Dockerfile.python3.13 .`
+
+This will create an image called *aws-lambda-python3.19:local*. When building lambda layers we always use this image.
+
+### Creating a new lambda layer
+
+1. Create a new directory *lambda_layer_name* with a subdirectory *python*.
+2. Create a *Requirements.txt* file in the new directory.
+3. Run the docker container and enter (bash)
+5. Install the python packages to the **python* directory.
+6. Clean up the install
+7. Package (zip)
+
+``` bash
+# Create the new directory
+mkdir -p lambda_layer_name/python
+# Create the Requirements.txt
+echo 'pymongo' > Requirements.txt
+# Run the docker container 
+docker run --name lambdalayer --rm --env HTTP_PROXY --env HTTPS_PROXY --env NO_PROXY --mount type=bind,source="$(pwd)"/lambda_layer_name,target=/var/task/lambdalayer -it aws-lambda-python3.19:local bash
+# Change to the lambdalayer/python directory
+cd lambdalayer/python 
+# Install the python packages to the current directory lambdalayer/python
+pip3 install --target=. -r ../requirements.txt
+# Cleanup
+rm -rf *.dist-info
+find . -name "tests" -type d | xargs -I{} rm -rf {}
+find . -name "docs" -type d | xargs -I{} rm -rf {}
+find . -name "__pycache__" -type d | xargs -I{} rm -rf {}
+rm -rf boto* 	# Boto3 not required - remove in case it was installed as a dependancy
+exit			# Exit container
+# Package
+cd lambda_layer_name
+zip -r lambda_layer_name.zip python
+```
+
+### Custom layers
+
+Some layers will require more than just a python requirements file. You can add any source files to the lambda *lambda_layer_name* and package them up or even build from source.
+Some layers will have additional README.md files to explain the build process (See pylibgeohash for example).
+
 ## AWS Lambda Base Container Images
 
 AWS provided base images for Lambda contain all the required components to run your functions packaged as container images on AWS Lambda.
