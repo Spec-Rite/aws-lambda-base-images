@@ -15,4 +15,10 @@ ENV LAMBDA_RUNTIME_DIR=/var/runtime
 
 WORKDIR /var/task
 
-ENTRYPOINT ["/lambda-entrypoint.sh"]
+# Install requirements to build packages from source when required.
+RUN dnf install -y freetype-devel gcc g++ cmake
+RUN pip3 install setuptools
+
+# Remove entry point - we only want to build not run a lambda!
+#ENTRYPOINT ["/lambda-entrypoint.sh"]
+
