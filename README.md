@@ -1,3 +1,10 @@
+## Spec-rite Lambda Base Container Layers
+
+This forked repository contains the dockerfiles that allow us to run lambda containers. Using these containers we can build layers using the exact runtime environment that the lambda runs in.
+
+We only use python3.13 for now. So the first thing you will want to do is checkout that branch. The other branches are here just in case we ever need them.
+
+
 ## AWS Lambda Base Container Images
 
 AWS provided base images for Lambda contain all the required components to run your functions packaged as container images on AWS Lambda.
