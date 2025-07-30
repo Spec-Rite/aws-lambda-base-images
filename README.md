@@ -24,7 +24,7 @@ This will create an image called *aws-lambda-python3.13:local*. When building la
 # Create the new directory
 mkdir -p lambda_layer_name/python
 # Create the Requirements.txt - this example installs pymongo
-echo 'pymongo' > Requirements.txt
+echo 'pymongo' > requirements.txt
 # Run the docker container 
 docker run --name lambdalayer --rm --env HTTP_PROXY --env HTTPS_PROXY --env NO_PROXY --mount type=bind,source="$(pwd)"/lambda_layer_name,target=/var/task/lambdalayer -it aws-lambda-python3.13:local bash
 # Change to the lambdalayer/python directory
