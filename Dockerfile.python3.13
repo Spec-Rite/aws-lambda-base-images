@@ -1,10 +1,10 @@
 FROM scratch
-ADD x86_64/0bfefa44004483b59791a74d1b6bd28d5a2c580329cb293f96b64149681b247a.tar.xz /
-ADD x86_64/266cf174172aacd7f462b3faea23e2fbf0cb9ab03b4abc567f596cda12352ff8.tar.xz /
-ADD x86_64/818f37e4764235bbc6538c42861e70b13485ca117acbc37f63ce967ea3016a53.tar.xz /
-ADD x86_64/88b9d31cb431070e65ecdbf39ff895cf0b19f9596d26e59c4a483c302d8b5041.tar.xz /
-ADD x86_64/9e919cd3f12a3c0433fe9666b0e2ebbc12a1eb8d1b74d3f6d9c5fcfe491c730e.tar.xz /
-ADD x86_64/ba1cdcf5cdb1464e464733f478e1a1086a0cb9ea2c0e873694af90de1842b983.tar.xz /
+ADD x86_64/6dbeac211a0d64007402d10ea079af9403de06922af4dcf0dfc52d604ddaae60.tar.xz /
+ADD x86_64/8337467a5d267a65983a72d84808c8b130811dd7b71fbf597ecbfe5d8f9288aa.tar.xz /
+ADD x86_64/ae11e954b1ff9401610d97fe937f30b47248d4844e630bb716141d84a933aaac.tar.xz /
+ADD x86_64/b2b311137998c1cac747da3b05fdec337b386cbde9fc341caa3dd07c4b0c9bd7.tar.xz /
+ADD x86_64/b6d1645a9f5d40b7c897276fb5a970535e7f03ac6faad98552e7628a568e1701.tar.xz /
+ADD x86_64/efc7ed229ff66b0b07d4f7068df37af6b184afa95ca33603d15f289a3515591c.tar.xz /
 
 ENV LANG=en_US.UTF-8
 ENV TZ=:/etc/localtime
@@ -15,10 +15,5 @@ ENV LAMBDA_RUNTIME_DIR=/var/runtime
 
 WORKDIR /var/task
 
-# Install requirements to build packages from source when required.
-RUN dnf install -y freetype-devel gcc g++ cmake
-RUN pip3 install setuptools
-
-# Remove entry point - we only want to build not run a lambda!
 #ENTRYPOINT ["/lambda-entrypoint.sh"]
 
